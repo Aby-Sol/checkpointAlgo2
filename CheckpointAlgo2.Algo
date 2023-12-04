@@ -1,0 +1,55 @@
+ALGORITHM Problem1;
+VAR
+Set1:ARRAY_OF INTEGER[100];
+Set2: ARRAY_OF INTEGER[100];
+L1,L2,i,j,sum:INTEGER:=0
+Found:BOOLEAN;
+BEGIN
+ Write("enter the length of the first set");
+ Read(L1); /* This will allow us to know the length of the first Tab*/
+ Write ("Enter the length of the second set");
+ Read(L2); /*This will allow us to know the length of the second Tab*/
+    FOR i FROM 1 TO L1 STEP 1  DO
+        write ("Enter value number",i,"of the first set");
+        Read(Set1[i]); /*This will allow us to fill the first Tab*/
+    END_FOR
+
+    FOR j FROM 1 TO L2 STEP 1  DO
+        write ("Enter value number",j,"of the second set");
+        Read(Set2[j]); /*This will allow us to fill the second Tab*/
+    END_FOR
+
+    FOR i FROM 1 TO L1 STEP 1  DO /*We are going to compare each element of the first set to all the elements in the second set*/
+        Found:=False; 
+        FOR j FROM 1 TO L2 STEP 1  DO
+            IF (Set1[i]==Set2[j]) THEN
+                Found:=True; /*If a number of the first set is found in the second set*/
+                ELSE 
+                Found:=False;
+            END_IF
+
+            IF (Found==False) THEN 
+                Sum:=Sum+set1[i]; /*If the machine went through the entire set and didn't find that number in it, it means that the number is distinct and we can add it to the sum*/
+            END_IF
+        END_FOR
+    END_FOR
+
+    FOR j FROM 1 TO L2 STEP 1  DO /*We are going to do the exact same thing but this time with the second set*/
+         Found:=False;
+            FOR i FROM 1 TO L1 STEP 1  DO
+                IF (Set2[j]==Set1[i]) THEN
+                    Found:=True;
+                    ELSE
+                    Found:=False;
+                END_IF
+
+                IF (Found==False) THEN 
+                Sum:=Sum+set2[j];
+                END_IF
+            END_FOR   
+    END_FOR
+        
+
+        
+ Write ("The sum of all the distinct elements from both sets is",sum)
+END
